@@ -19,15 +19,17 @@ import java.util.List;
  */
 public class ListAdapter extends ArrayAdapter<Dribbble>{
     private LayoutInflater mInflater;
-    private ImageView image_view;
-    private TextView title_view;
-    private TextView player_view;
-    private DisplayImageOptions option;
+    private ImageView mImageView;
+    private TextView mTitleView;
+    private TextView mPlayerView;
+    private DisplayImageOptions mOption; //画像のオプション
 
     public ListAdapter(Context context){
         super(context,0);
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        option = new DisplayImageOptions.Builder()
+
+        //オプションの設定
+        mOption = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .considerExifParams(true)
@@ -41,18 +43,22 @@ public class ListAdapter extends ArrayAdapter<Dribbble>{
             convertView = mInflater.inflate(R.layout.row,null);
         }
 
+        //アイテムの取得
         final Dribbble item = this.getItem(position);
         if(item!=null){
 
-            image_view = (ImageView)convertView.findViewById(R.id.dribbble_image);
+            //画像の表示
+            mImageView = (ImageView)convertView.findViewById(R.id.dribbble_image);
             ImageLoader loader = ImageLoader.getInstance();
-            loader.displayImage(item.getImage_url(),image_view, option);
+            loader.displayImage(item.getImage_url(),mImageView, mOption);
 
-            title_view = (TextView)convertView.findViewById(R.id.title_text);
-            title_view.setText(item.getTitle_text());
+            //タイトル名の表示
+            mTitleView = (TextView)convertView.findViewById(R.id.title_text);
+            mTitleView.setText(item.getTitle_text());
 
-            player_view = (TextView)convertView.findViewById(R.id.player_text);
-            player_view.setText(item.getPlayer_text());
+            //プレイヤー名の表示
+            mPlayerView = (TextView)convertView.findViewById(R.id.player_text);
+            mPlayerView.setText(item.getPlayer_text());
         }
         return convertView;
     }

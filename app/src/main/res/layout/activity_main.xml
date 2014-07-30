@@ -11,10 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
+
         <Button
             android:id="@+id/popular_button"
             android:background="#ffb6c1"
-            android:text="@string/popular_button_label"
+            android:text="@string/popular_label"
             android:textColor="@color/row_text"
             android:layout_height="wrap_content"
             android:layout_width="0dp"
@@ -22,26 +23,26 @@
         <Button
             android:id="@+id/everyone_button"
             android:background="#ffb6c1"
+            android:text="@string/everyone_label"
             android:textColor="@color/row_text"
-            android:text="@string/everyone_button_label"
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="1" />
         <Button
             android:id="@+id/debuts_button"
             android:background="#ffb6c1"
+            android:text="@string/debuts_label"
             android:textColor="@color/row_text"
-            android:text="@string/debuts_button_label"
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="1" />
+
         </LinearLayout>
+
     <ListView
         android:id="@+id/android:list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_above="@id/buttons"
-        />
-
+        android:layout_above="@id/buttons" />
 
 </RelativeLayout>
