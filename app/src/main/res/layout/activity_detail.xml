@@ -5,36 +5,20 @@
     android:layout_height="fill_parent"
     android:paddingRight="8dp"
     android:paddingLeft="8dp">
-    <ImageView
-        android:id="@+id/detail_dribbble_image"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/detail_title_text"
+        android:textStyle="bold"
+        android:textSize="32sp"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <LinearLayout
-        android:id="@+id/title_text_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/detail_dribbble_image">
-
-        <TextView
-            android:id="@+id/detail_title_label"
-            android:text="@string/title_label"
-            android:textSize="16sp"
-            android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/detail_title_text"
-            android:textStyle="bold"
-            android:textSize="24sp"
-            android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/player_layout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/title_text_layout">
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/detail_title_text">
         <TextView
             android:id="@+id/detail_player_label"
             android:text="@string/player_label"
@@ -44,11 +28,14 @@
             android:textSize="16sp" />
         <TextView
             android:id="@+id/detail_player_text"
-            android:textStyle="bold"
             android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="24sp" />
+            android:textSize="16sp" />
     </LinearLayout>
-
+    <ImageView
+        android:id="@+id/detail_dribbble_image"
+        android:layout_below="@+id/player_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>
