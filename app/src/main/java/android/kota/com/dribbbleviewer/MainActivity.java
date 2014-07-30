@@ -48,7 +48,7 @@ public class MainActivity extends ListActivity implements AbsListView.OnScrollLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getListView().addFooterView(getFooter());
-
+        setTitle(R.string.popular_label);
 
         String url = ROOT_URL + POPULAR_URL + page;
 
@@ -185,6 +185,7 @@ public class MainActivity extends ListActivity implements AbsListView.OnScrollLi
             case R.id.popular_button:
                 page = 0;
                 main_url = POPULAR_URL;
+                setTitle(R.string.popular_label);
                 mQueue.cancelAll(new RequestQueue.RequestFilter(){
                     @Override
                     public boolean apply(Request<?> request){
@@ -198,6 +199,7 @@ public class MainActivity extends ListActivity implements AbsListView.OnScrollLi
             case R.id.everyone_button:
                 page = 0;
                 main_url = EVERYONE_URL;
+                setTitle(R.string.everyone_label);
                 mQueue.cancelAll(new RequestQueue.RequestFilter(){
                     @Override
                     public boolean apply(Request<?> request){
@@ -211,6 +213,7 @@ public class MainActivity extends ListActivity implements AbsListView.OnScrollLi
             case R.id.debuts_button:
                 page = 0;
                 main_url = DEBUTS_URL;
+                setTitle(R.string.debuts_label);
                 mQueue.cancelAll(new RequestQueue.RequestFilter(){
                     @Override
                     public boolean apply(Request<?> request){
