@@ -1,0 +1,3 @@
+[submodule "app/modules/volley"]
+	path = app/modules/volley
+	url = https://android.googlesource.com/platform/frameworks/volley
