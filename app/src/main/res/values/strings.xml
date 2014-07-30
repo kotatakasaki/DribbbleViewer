@@ -4,5 +4,9 @@
     <string name="app_name">DribbbleViewer</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="popular_button_label">Popular</string>
+    <string name="everyone_button_label">Everyone</string>
+    <string name="debuts_button_label">Debuts</string>
+    <string name="favorite_list_button_label">Fav</string>
 
 </resources>

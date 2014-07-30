@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.android.volley.Request;
@@ -25,9 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends ListActivity implements AbsListView.OnScrollListener{
+public class MainActivity extends ListActivity implements AbsListView.OnScrollListener, View.OnClickListener{
     private RequestQueue mQueue;
-    private List<Dribbble> data_list= new ArrayList<Dribbble>();
     private ListAdapter adapter;
     private View mFooter;
     private int page = 0;
@@ -35,6 +35,13 @@ public class MainActivity extends ListActivity implements AbsListView.OnScrollLi
     private int MAX_COUNT = 50;
     private String ROOT_URL = "http://api.dribbble.com/shots/";
     private String POPULAR_URL = "popular?page=";
+    private String DEBUTS_URL = "debuts?page=";
+    private String EVERYONE_URL = "everyone?page=";
+    private String main_url = POPULAR_URL;
+    private Button popularButton;
+    private Button everyoneButton;
+    private Button debutsButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +52,20 @@ public class MainActivity extends ListActivity implements AbsListView.OnScrollLi
 
         String url = ROOT_URL + POPULAR_URL + page;
 
-        adapter = new ListAdapter(getApplicationContext(),data_list);
+        adapter = new ListAdapter(getApplicationContext());
         setListAdapter(adapter);
 
         mQueue = Volley.newRequestQueue(this);
-//        addRequest(url);
 
         getListView().setOnScrollListener(this);
+
+        popularButton = (Button) findViewById(R.id.popular_button);
+        everyoneButton = (Button) findViewById(R.id.everyone_button);
+        debutsButton = (Button) findViewById(R.id.debuts_button);
+
+        popularButton.setOnClickListener(this);
+        everyoneButton.setOnClickListener(this);
+        debutsButton.setOnClickListener(this);
 
     }
 
@@ -78,6 +92,7 @@ public class MainActivity extends ListActivity implements AbsListView.OnScrollLi
 
 
     public void addRequest(String url){
+        reading = true;
         mQueue.add(new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -92,11 +107,13 @@ public class MainActivity extends ListActivity implements AbsListView.OnScrollLi
                                 dribbble.setImage_url(jsonObject.getString("image_url"));
                                 dribbble.setTitle_text(jsonObject.getString("title"));
                                 dribbble.setPlayer_text(jsonObject.getJSONObject("player").getString("name"));
-                                data_list.add(dribbble);
+                                adapter.add(dribbble);
                             }
                             adapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
+                        } finally {
+                            reading = false;
                         }
                     }
                 },
@@ -148,10 +165,11 @@ public class MainActivity extends ListActivity implements AbsListView.OnScrollLi
             return;
         }
 // 既に読み込み中ならスキップ
-//        if (mQueue.getSequenceNumber() != null && mTask.getStatus() == AsyncTask.Status.RUNNING) {
-//            return;
-//        }
-        String url = ROOT_URL + POPULAR_URL + (page++);
+        if (reading) {
+            return;
+        }
+        page++;
+        String url = ROOT_URL + main_url + page;
         Log.d("ERROR",url);
         addRequest(url);
     }
@@ -161,4 +179,49 @@ public class MainActivity extends ListActivity implements AbsListView.OnScrollLi
     }
 
 
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.popular_button:
+                page = 0;
+                main_url = POPULAR_URL;
+                mQueue.cancelAll(new RequestQueue.RequestFilter(){
+                    @Override
+                    public boolean apply(Request<?> request){
+                        return true;
+                    }
+                });
+                adapter.clear();
+                String pop_url = ROOT_URL + main_url + page;
+                addRequest(pop_url);
+                break;
+            case R.id.everyone_button:
+                page = 0;
+                main_url = EVERYONE_URL;
+                mQueue.cancelAll(new RequestQueue.RequestFilter(){
+                    @Override
+                    public boolean apply(Request<?> request){
+                        return true;
+                    }
+                });
+                adapter.clear();
+                String eve_url = ROOT_URL + main_url + page;
+                addRequest(eve_url);
+                break;
+            case R.id.debuts_button:
+                page = 0;
+                main_url = DEBUTS_URL;
+                mQueue.cancelAll(new RequestQueue.RequestFilter(){
+                    @Override
+                    public boolean apply(Request<?> request){
+                        return true;
+                    }
+                });
+                adapter.clear();
+                String deb_url = ROOT_URL + main_url + page;
+                addRequest(deb_url);
+                break;
+        }
+
+    }
 }

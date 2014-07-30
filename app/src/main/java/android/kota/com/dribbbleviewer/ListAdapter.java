@@ -17,15 +17,15 @@ import java.util.List;
 /**
  * Created by takasakikota on 2014/07/30.
  */
-public class ListAdapter extends ArrayAdapter{
+public class ListAdapter extends ArrayAdapter<Dribbble>{
     private LayoutInflater mInflater;
     private ImageView image_view;
     private TextView title_view;
     private TextView player_view;
     private DisplayImageOptions option;
 
-    public ListAdapter(Context context, List<Dribbble> objects){
-        super(context,0,objects);
+    public ListAdapter(Context context){
+        super(context,0);
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         option = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
@@ -41,7 +41,7 @@ public class ListAdapter extends ArrayAdapter{
             convertView = mInflater.inflate(R.layout.row,null);
         }
 
-        final Dribbble item = (Dribbble)this.getItem(position);
+        final Dribbble item = this.getItem(position);
         if(item!=null){
 
             image_view = (ImageView)convertView.findViewById(R.id.dribbble_image);
