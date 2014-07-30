@@ -6,23 +6,31 @@
 
     <LinearLayout
         android:id="@+id/buttons"
+        android:padding="1dp"
+        android:background="#FFFFFF"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
         <Button
             android:id="@+id/popular_button"
+            android:background="#ffb6c1"
             android:text="@string/popular_button_label"
+            android:textColor="#FFFFFF"
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="1" />
         <Button
             android:id="@+id/everyone_button"
+            android:background="#ffb6c1"
+            android:textColor="#FFFFFF"
             android:text="@string/everyone_button_label"
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="1" />
         <Button
             android:id="@+id/debuts_button"
+            android:background="#ffb6c1"
+            android:textColor="#FFFFFF"
             android:text="@string/debuts_button_label"
             android:layout_height="wrap_content"
             android:layout_width="0dp"
