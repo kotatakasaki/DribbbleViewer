@@ -8,8 +8,8 @@
     <string name="everyone_button_label">Everyone</string>
     <string name="debuts_button_label">Debuts</string>
     <string name="favorite_list_button_label">Fav</string>
-    <string name="title_label">TITLE:</string>
-    <string name="player_label">PLAYER NAME:</string>
+    <string name="title_label">TITLE: </string>
+    <string name="player_label">PLAYER NAME: </string>
     <string name="popular_label">Popular</string>
     <string name="everyone_label">Everyone</string>
     <string name="debuts_label">Debuts</string>

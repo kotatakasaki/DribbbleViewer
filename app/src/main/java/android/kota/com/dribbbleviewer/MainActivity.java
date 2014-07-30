@@ -2,6 +2,7 @@ package android.kota.com.dribbbleviewer;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -227,4 +228,5 @@ public class MainActivity extends ListActivity implements AbsListView.OnScrollLi
         }
 
     }
+
 }

@@ -1,7 +1,9 @@
 package android.kota.com.dribbbleviewer;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +20,8 @@ public class DetailActivity extends Activity{
 
         setContentView(R.layout.activity_detail);
 
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
         String image_url = "";
         String title_text = "";
         String player_text = "";
@@ -26,6 +30,8 @@ public class DetailActivity extends Activity{
             title_text = getIntent().getExtras().getString("title_text");
             player_text = getIntent().getExtras().getString("player_text");
         }
+
+        getActionBar().setTitle(title_text);
 
         ImageView imageView = (ImageView)findViewById(R.id.detail_dribbble_image);
         ImageLoader loader = ImageLoader.getInstance();
@@ -38,5 +44,16 @@ public class DetailActivity extends Activity{
         TextView playerView = (TextView)findViewById(R.id.detail_player_text);
         playerView.setText(player_text);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                startActivity(new Intent(this, MainActivity.class));
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
