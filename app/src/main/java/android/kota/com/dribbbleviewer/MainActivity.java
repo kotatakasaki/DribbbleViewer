@@ -170,6 +170,10 @@ public class MainActivity extends Activity implements View.OnClickListener{
                                 //画像のURLを取得
                                 dribbble.setImage_url(jsonObject.getString("image_url"));
 
+                                //プレイヤーの画像を取得
+                                dribbble.setPlayerImageUrl(jsonObject.getJSONObject("player").getString("avatar_url"));
+
+
                                 //タイトル名を取得
                                 dribbble.setTitle_text(jsonObject.getString("title"));
 

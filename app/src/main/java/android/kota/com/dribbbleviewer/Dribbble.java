@@ -5,11 +5,16 @@ package android.kota.com.dribbbleviewer;
  */
 public class Dribbble {
     private String mImageUrl; //画像のURL
+    private String mPlayerImageUrl; //プレイヤー画像のURL
     private String mTitleText; //タイトル名
     private String mPlayerText; //プレイヤー名
 
     public void setImage_url(String image_url) {
         this.mImageUrl = image_url;
+    }
+
+    public void setPlayerImageUrl(String mPlayerImageUrl) {
+        this.mPlayerImageUrl = mPlayerImageUrl;
     }
 
     public void setTitle_text(String title_text) {
@@ -22,6 +27,10 @@ public class Dribbble {
 
     public String getImage_url() {
         return mImageUrl;
+    }
+
+    public String getmPlayerImageUrl() {
+        return mPlayerImageUrl;
     }
 
     public String getTitle_text() {

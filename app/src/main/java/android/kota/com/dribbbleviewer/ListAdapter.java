@@ -44,6 +44,7 @@ public class ListAdapter extends ArrayAdapter<Dribbble>{
             // GridView一コマの中のそれぞれのViewの参照を保持するクラスを生成
             holder = new ViewHolder();
             holder.image = (ImageView) convertView.findViewById(R.id.dribbble_image);
+            holder.player_image = (ImageView) convertView.findViewById(R.id.player_image);
             holder.title = (TextView) convertView.findViewById(R.id.title_text);
             holder.player = (TextView) convertView.findViewById(R.id.player_text);
             // TagにGridViewの1コマの中に設定されたViewの参照を設定
@@ -60,6 +61,7 @@ public class ListAdapter extends ArrayAdapter<Dribbble>{
             //画像の表示
             ImageLoader loader = ImageLoader.getInstance();
             loader.displayImage(item.getImage_url(),holder.image, mOption);
+            loader.displayImage(item.getmPlayerImageUrl(),holder.player_image, mOption);
 
             //タイトル名の表示
             holder.title.setText(item.getTitle_text());
@@ -74,6 +76,7 @@ public class ListAdapter extends ArrayAdapter<Dribbble>{
 // GridView一コマの内部の参照を保持する
 class ViewHolder {
     ImageView image;
+    ImageView player_image;
     TextView title;
     TextView player;
 }
