@@ -1,5 +1,6 @@
 package android.kota.com.dribbbleviewer;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import com.android.volley.Request;
@@ -24,7 +27,8 @@ import org.json.JSONObject;
 
 
 
-public class MainActivity extends ListActivity implements AbsListView.OnScrollListener, View.OnClickListener{
+//public class MainActivity extends ListActivity implements AbsListView.OnScrollListener, View.OnClickListener{
+public class MainActivity extends Activity implements View.OnClickListener{
     private ListAdapter mAdapter;
     private RequestQueue mQueue;
     private View mFooter; //ロード画像を表示するフッター
@@ -39,6 +43,7 @@ public class MainActivity extends ListActivity implements AbsListView.OnScrollLi
     private Button mPopularButton;
     private Button mEveryoneButton;
     private Button mDebutsButton;
+    private GridView mGridView;
 
 
     @Override
@@ -47,22 +52,57 @@ public class MainActivity extends ListActivity implements AbsListView.OnScrollLi
         setContentView(R.layout.activity_main);
         init();
 
+        //リクエストキューの生成
+        mQueue = Volley.newRequestQueue(this);
+
+        //GridViewの読み込み
+        mGridView = (GridView) findViewById(R.id.grid_list);
+        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //選択されたアイテムを取得
+                Dribbble dribbble = (Dribbble)parent.getItemAtPosition(position);
+
+                //インテントを生成
+                Intent intent = new Intent(MainActivity.this,DetailActivity.class);
+
+                //選択されたアイテムの内容をセット
+                intent.putExtra("image_url", dribbble.getImage_url());
+                intent.putExtra("title_text", dribbble.getTitle_text());
+                intent.putExtra("player_text", dribbble.getPlayer_text());
+
+                //移動
+                startActivity(intent);
+            }
+        });
+
         //フッターの追加
-        getListView().addFooterView(getFooter());
+//        getListView().addFooterView(getFooter());
 
         //タイトルの追加
         setTitle(R.string.popular_label);
 
         //アダプターをセット
         mAdapter = new ListAdapter(getApplicationContext());
-        setListAdapter(mAdapter);
-
-        //リクエストキューの生成
-        mQueue = Volley.newRequestQueue(this);
+//        setListAdapter(mAdapter);
+        mGridView.setAdapter(mAdapter);
 
         //スクロールリスナーをセット
-        getListView().setOnScrollListener(this);
+//        getListView().setOnScrollListener(this);
+        mGridView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
 
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if (totalItemCount == firstVisibleItem + visibleItemCount) {
+                    //追加読み込み
+                    additionalReading();
+                }
+            }
+        });
         //ボタンのリスナーをセット
         mPopularButton = (Button) findViewById(R.id.popular_button);
         mEveryoneButton = (Button) findViewById(R.id.everyone_button);
@@ -161,9 +201,9 @@ public class MainActivity extends ListActivity implements AbsListView.OnScrollLi
     }
 
     //選択されたアイテムの詳細画面へ移動
-    @Override
+//    @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
+//        super.onListItemClick(l, v, position, id);
 
         //選択されたアイテムを取得
         Dribbble dribbble = (Dribbble)l.getItemAtPosition(position);
@@ -180,12 +220,12 @@ public class MainActivity extends ListActivity implements AbsListView.OnScrollLi
         startActivity(intent);
     }
 
-    @Override
+//    @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
     }
 
     //スクロール判定
-    @Override
+//    @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
         if (totalItemCount == firstVisibleItem + visibleItemCount) {
             //追加読み込み
@@ -199,7 +239,7 @@ public class MainActivity extends ListActivity implements AbsListView.OnScrollLi
 
         // 読み込み回数が最大値以上ならスキップ。フッタを消す
         if (mPage > MAX_COUNT) {
-            invisibleFooter();
+//            invisibleFooter();
             return;
         }
 
@@ -217,9 +257,9 @@ public class MainActivity extends ListActivity implements AbsListView.OnScrollLi
     }
 
     //フッターを隠す
-    private void invisibleFooter() {
+/*    private void invisibleFooter() {
         getListView().removeFooterView(getFooter());
-    }
+    } */
 
     //表示するアイテムの種類を変更
     @Override

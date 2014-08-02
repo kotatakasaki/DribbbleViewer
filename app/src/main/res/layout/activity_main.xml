@@ -38,11 +38,22 @@
             android:layout_weight="1" />
 
         </LinearLayout>
-
+<!--
     <ListView
         android:id="@+id/android:list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_above="@id/buttons" />
+        android:layout_above="@id/buttons" /> -->
+    <GridView
+        android:id="@+id/grid_list"
+        android:numColumns="2"
+        android:paddingTop="4dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:verticalSpacing="4dp"
+        android:horizontalSpacing="4dp"
+        android:layout_above="@id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </RelativeLayout>
