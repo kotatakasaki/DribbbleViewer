@@ -45,8 +45,14 @@ public class ListAdapter extends ArrayAdapter<Dribbble>{
             holder = new ViewHolder();
             holder.image = (ImageView) convertView.findViewById(R.id.dribbble_image);
             holder.player_image = (ImageView) convertView.findViewById(R.id.player_image);
+            holder.views_image = (ImageView) convertView.findViewById(R.id.views_image);
+            holder.comments_image = (ImageView) convertView.findViewById(R.id.comments_image);
+            holder.likes_image = (ImageView) convertView.findViewById(R.id.likes_image);
             holder.title = (TextView) convertView.findViewById(R.id.title_text);
             holder.player = (TextView) convertView.findViewById(R.id.player_text);
+            holder.views_count = (TextView) convertView.findViewById(R.id.views_text);
+            holder.comments_count = (TextView) convertView.findViewById(R.id.comments_text);
+            holder.likes_count = (TextView) convertView.findViewById(R.id.likes_text);
             // TagにGridViewの1コマの中に設定されたViewの参照を設定
             convertView.setTag(holder);
         } else {
@@ -62,12 +68,25 @@ public class ListAdapter extends ArrayAdapter<Dribbble>{
             ImageLoader loader = ImageLoader.getInstance();
             loader.displayImage(item.getImage_url(),holder.image, mOption);
             loader.displayImage(item.getmPlayerImageUrl(),holder.player_image, mOption);
+            holder.views_image.setImageResource(R.drawable.ic_views);
+            holder.comments_image.setImageResource(R.drawable.ic_comments);
+            holder.likes_image.setImageResource(R.drawable.ic_likes);
 
             //タイトル名の表示
             holder.title.setText(item.getTitle_text());
 
             //プレイヤー名の表示
             holder.player.setText(item.getPlayer_text());
+
+            //ビュー数の表示
+            holder.views_count.setText(item.getmViewsText());
+
+            //コメント数の表示
+            holder.comments_count.setText(item.getmCommentsText());
+
+            //ライク数の表示
+            holder.likes_count.setText(item.getmLikesText());
+
         }
         return convertView;
     }
@@ -77,6 +96,12 @@ public class ListAdapter extends ArrayAdapter<Dribbble>{
 class ViewHolder {
     ImageView image;
     ImageView player_image;
+    ImageView views_image;
+    ImageView comments_image;
+    ImageView likes_image;
     TextView title;
     TextView player;
+    TextView views_count;
+    TextView comments_count;
+    TextView likes_count;
 }

@@ -59,6 +59,67 @@
             android:layout_height="fill_parent" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@id/player_image"
+        android:layout_alignParentRight="true"
+        android:paddingBottom="4dp"
+        android:paddingLeft="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/views"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/views_image"
+                android:layout_width="20dp"
+                android:layout_height="15dp" />
+
+            <TextView
+                android:id="@+id/views_text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/comments"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/comments_image"
+                android:layout_width="20dp"
+                android:layout_height="15dp" />
+
+            <TextView
+                android:id="@+id/comments_text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/likes"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/likes_image"
+                android:layout_width="20dp"
+                android:layout_height="15dp" />
+
+            <TextView
+                android:id="@+id/likes_text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+    </LinearLayout>
 </RelativeLayout>
 
 </LinearLayout>

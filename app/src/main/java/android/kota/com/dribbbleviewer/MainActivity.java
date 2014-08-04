@@ -173,12 +173,20 @@ public class MainActivity extends Activity implements View.OnClickListener{
                                 //プレイヤーの画像を取得
                                 dribbble.setPlayerImageUrl(jsonObject.getJSONObject("player").getString("avatar_url"));
 
-
                                 //タイトル名を取得
                                 dribbble.setTitle_text(jsonObject.getString("title"));
 
                                 //プレイヤー名を取得
                                 dribbble.setPlayer_text(jsonObject.getJSONObject("player").getString("name"));
+
+                                //ビュー数を取得
+                                dribbble.setmViewsText(jsonObject.getString("views_count"));
+
+                                //コメント数を取得
+                                dribbble.setmCommentsText(jsonObject.getString("comments_count"));
+
+                                //ライク数を取得
+                                dribbble.setmLikesText(jsonObject.getString("likes_count"));
 
                                 //アダプターに追加
                                 mAdapter.add(dribbble);
