@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -14,7 +15,7 @@
 
         <Button
             android:id="@+id/popular_button"
-            android:background="#ffb6c1"
+            android:background="#eec8ee"
             android:text="@string/popular_label"
             android:textColor="@color/row_text"
             android:layout_height="wrap_content"
@@ -22,7 +23,7 @@
             android:layout_weight="1" />
         <Button
             android:id="@+id/everyone_button"
-            android:background="#ffb6c1"
+            android:background="#eec8ee"
             android:text="@string/everyone_label"
             android:textColor="@color/row_text"
             android:layout_height="wrap_content"
@@ -30,7 +31,7 @@
             android:layout_weight="1" />
         <Button
             android:id="@+id/debuts_button"
-            android:background="#ffb6c1"
+            android:background="#eec8ee"
             android:text="@string/debuts_label"
             android:textColor="@color/row_text"
             android:layout_height="wrap_content"
